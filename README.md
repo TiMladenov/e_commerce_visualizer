@@ -33,7 +33,7 @@ number of visits and unique visits for each item, price range, and category.
 
 # Prerequisites to run this application
 
-You'll need Python  and PHP 7.0+ with the respective packages installed to handle SQLite3 communication and SQLite3 to access the DB.
+You'll need Python 3  and PHP 7.0+ with the respective packages installed to handle SQLite3 communication and SQLite3 to access the DB.
 Written and tested under Ubuntu 16.04 LTS.
 
 # Private keys
