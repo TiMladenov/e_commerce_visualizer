@@ -1,0 +1,9 @@
+.item {
+    height: 120px;
+    overflow: auto;
+}
+
+.item.description {
+    width: 300px;
+    word-wrap: break-word;
+}

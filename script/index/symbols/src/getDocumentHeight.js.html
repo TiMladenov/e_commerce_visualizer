@@ -1,0 +1,24 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * @author  Tihomir Mladenov, 01.08.2019
+<span class='line'>  3</span>  * @version 1.0
+<span class='line'>  4</span>  *
+<span class='line'>  5</span>  * Gets the height of the client's browser window
+<span class='line'>  6</span>  * 
+<span class='line'>  7</span>  * @return {int} window_max_h
+<span class='line'>  8</span>  */</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">getDocumentHeight</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">doc</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="WHIT">    </span><span class="NAME">window_max_h</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.max</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">        </span><span class="NAME">doc.body.scrollHeight</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">doc.documentElement.scrollHeight</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">        </span><span class="NAME">doc.body.offsetHeight</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">doc.documentElement.offsetHeight</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">        </span><span class="NAME">doc.body.clientHeight</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">doc.documentElement.clientHeight</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">window_max_h</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="PUNC">}</span></pre></body></html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Admin panel</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body onload="getCategories()">
+      <main class="container mt-4 mb -4">
+          <div id="accordianId" role="tablist" aria-multiselectable="true">
+              <div class="card shadow-sm mt-3">
+                  <div class="card-header" role="tab" id="section1HeaderId">
+                      <h5 class="mb-0">
+                          <a data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId" class="text-secondary">
+                    Edit categories
+                  </a>
+                      </h5>
+                  </div>
+                  <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId">
+                      <div class="card-body">
+                            <article class="row mt-4 mb-4 justify-content-center">
+                                    <div class="col-10">
+                                          <label>Select a category to edit:</label>
+                                          <select name="category_edit" id="category_edit_id" class="form-control" required="required" onchange="setSelected()">
+                                              <option value="0"selected></option>
+                                          </select>
+                                    </div>
+                                </article>
+                                <article class="row mt-4 mb-4 justify-content-center">
+                                      <div class="col-10">
+                                          <label>Selected category:</label>
+                                          <p id="category_selected" class="border border-secondary" style="width: 100%; height: 50%"></p>
+                                      </div>
+                                </article>
+                                <article class="row mt-4 mb-4 justify-content-center">
+                                      <div class="col-10">
+                                          <label>Update selected category with:</label>
+                                          <input id="category_new" type="text" class="border border-secondary" style="width: 100%; height: 50%">
+                                      </div>
+                                </article>
+                                <article class="row mt-4 mb-4 justify-content-center">
+                                      <div class="d-flex col-10 align-items-center justify-content-center">
+                                          <input id="btn_update_cat" type="button" class="btn btn-secondary" value="Update" onclick="updateCat()">
+                                      </div>
+                            </article>
+                      </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div class="card-header shadow-sm mt-3" role="tab" id="section2HeaderId">
+                      <h5 class="mb-0">
+                          <a data-toggle="collapse" data-parent="#accordianId" href="#section2ContentId" aria-expanded="true" aria-controls="section2ContentId" class="text-secondary">
+                    Browse the visit's data
+                  </a>
+                      </h5>
+                  </div>
+                  <div id="section2ContentId" class="collapse in" role="tabpanel" aria-labelledby="section2HeaderId">
+                      <div class="card-body">
+                          <article class="row mt-4 mb-4 justify-content-left">
+                              <div class="col-10">
+                                  <form action="" method="POST" id="chk_parent">
+                                        <input type="checkbox" id="chk1" name="product_id product_name product_category product_category_visits" value="filter_1" class="mr-2">Filter visits by products and categories<br>
+                                        <input type="checkbox" id="chk2" name="shop_name shop_visits" value="filter_2" class="mr-2">Filter visits by shops<br>
+                                        <input type="checkbox" id="chk3" name="product_name price price_curr price_range_visits" value="filter_3" class="mr-2">Filter visits by price range visits<br>
+                                        <input type="checkbox" id="chk4" name="a.product_id b.product_name a.product_visits" value="filter_4" class="mr-2">Filter visits by unique users<br>
+                                        <input type="button" value="Search" class="btn btn-outline-primary" onclick="getCheckOptions()">
+                                  </form>
+                              </div>
+                          </article>
+                          <h2 class="text-center">Products, categories and visits for each category</h2>
+                          <input type="checkbox" id="filter_0" name="filter_0" class="mr-2" onclick="filterCategory(this)">Filter products, categories with 0 visits<br>
+                          <span class="row mt-4 mb-4 justify-content-center shadow-sm" style="height: 300px; overflow-y: auto;">
+                                <table class="table" id="table_visitor_data">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product name</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Visits</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="table_visitor_body">
+                                        </tbody>
+                                </table>
+                          </span>
+                          <h2 class="text-center">Shop name and total shop visits</h2>
+                          <span class="row mt-4 mb-4 justify-content-center shadow-sm" style="height: 300px; overflow-y: auto;">
+                                <table class="table" id="table_shop_data">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Shop name</th>
+                                            <th scope="col">Visits</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="table_shop_body">
+                                        </tbody>
+                                </table>
+                          </span>
+                          <h2 class="text-center">Price range and product visits</h2>
+                          <input type="checkbox" id="filter_0" name="filter_0" class="mr-2" onclick="filter(this)">Filter products with 0 visits<br>
+                          <span class="row mt-4 mb-4 justify-content-center shadow-sm" style="height: 300px; overflow-y: auto;">
+                                <table class="table" id="table_price_range_data">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Currency</th>
+                                            <th scope="col">Range</th>
+                                            <th scope="col">Visits</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="table_price_range_body">
+                                        </tbody>
+                                </table>
+                          </span>
+                          <div class="row" style="height: 100px;">
+                            <table class="table" id="table_price_range_visits">
+                              <thead>
+                                  <th scope="col">0 - 5</th>
+                                  <th scope="col">5 - 10</th>
+                                  <th scope="col">10 - 20</th>
+                                  <th scope="col">20 - 40</th>
+                                  <th scope="col">40 - 80</th>
+                                  <th scope="col">80 - 160</th>
+                                  <th scope="col">160 - ...</th>
+                                </tr>
+                              </thead>
+                              <tbody id="table_price_range_visits_body">
+                                  <tr scope="row">
+                                    <td id="0 - 5">0</td>
+                                    <td id="5 - 10">0</td>
+                                    <td id="10 - 20">0</td>
+                                    <td id="20 - 40">0</td>
+                                    <td id="40 - 80">0</td>
+                                    <td id="80 - 160">0</td>
+                                    <td id="160 - ...">0</td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <h2 class="text-center">Visits by unique users</h2>
+                          <span class="row mt-4 mb-4 justify-content-center shadow-sm" style="height: 300px; overflow-y: auto;">
+                                <table class="table" id="table_unique_visit_data">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product ID</th>
+                                            <th scope="col">Product name</th>
+                                            <th scope="col">Product visits</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="table_unique_visit_body">
+                                        </tbody>
+                                </table>
+                          </span>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </main>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="script/admin/filter.js"></script>
+    <script type="text/javascript" src="script/admin/filterCategory.js"></script>
+    <script type="text/javascript" src="script/admin/getCategories.js"></script>
+    <script type="text/javascript" src="script/admin/getCheckOptions.js"></script>
+    <script type="text/javascript" src="script/admin/setSelected.js"></script>
+    <script type="text/javascript" src="script/admin/updateCat.js"></script>
+  </body>
+</html>

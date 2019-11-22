@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Store listing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+</head>
+  <body>
+    <header class="container">
+        <div class="row">
+            <form class="form-group form-inline col-12" id="submitForm" action="" onsubmit="alert('Press the Find button.'); return false;" method="POST">
+                <select id="search_filter" name="search_filter" class="custom-select col-3">
+                    <option selected value="0">Name</option>
+                    <option value="1">Description</option>
+                </select>
+              <input type="text" class="form-control m-1 col-6" name="search_field" id="search_field" aria-describedby="helpId" placeholder="Search here">
+              <!-- <input type="submit" class="btn btn-primary m-1 col-2" name="submit" value="Find"> -->
+              <button type="button" class="btn btn-primary m-1 col-2" id="search_button" name="submit" value="Find" onclick="sendData(1, 1, 'new')">Find</button>
+              <a href=""></a>
+            </form>
+        </div>
+        <div class="row mb-1">
+            <div class="col-3 mb-1">Select a category</div>
+            <div class="col-4 mb-1">Include promotions</div>
+            <div class="col-4 mb-1">Select price range</div>
+            <div class="col-12">
+                    <select id="category_filter" class="custom-select col-3" onchange="filterBy(this)">
+                        <option selected value="0"></option>
+                    </select>
+                    <select id="category_promotions" class="custom-select col-4" onchange="filterBy(this)">
+                        <option value="1">Yes</option>
+                        <option value="0" selected>No</option>
+                    </select>
+                    <select id="category_price_filter" class="custom-select col-4" onchange="filterBy(this)">
+                        <option selected value=""></option>
+                        <option value="0">0.01 - 5</option>
+                        <option value="5">5 - 10</option>
+                        <option value="10">10 - 20</option>
+                        <option value="40">40 - 80</option>
+                        <option value="80">80 - 160</option>
+                        <option value="160">160 ...</option>
+                    </select>
+            </div>
+        </div>
+    </header>
+    <main class="container mt-3" id = "main">
+        <article class="row">
+            <div class="badge badge-pill badge-secondary col-2 text-center">Name</div>
+            <div class="badge badge-pill badge-secondary col-2 text-center">Picture</div>
+            <div class="badge badge-pill badge-secondary col-3 text-center">Price</div>
+            <div class="badge badge-pill badge-secondary col-3 text-center">Description</div>
+            <div class="badge badge-pill badge-secondary col-2 text-center">Site</div>
+        </article>
+        <span class="container mt-3" id="span"></span>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/script/index/getDocumentHeight.js"></script>
+    <script type="text/javascript" src="/script/index/loadData.js"></script>
+    <script type="text/javascript" src="/script/index/filterBy.js"></script>
+    <script type="text/javascript" src="/script/index/countClick.js"></script>
+  </body>
+</html>
